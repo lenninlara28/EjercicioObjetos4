@@ -144,6 +144,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
        String aux;
+       if(txtContraseña.getText().trim().isEmpty()){
+           JOptionPane.showMessageDialog(this,"Ingrese Su Contraseña Y Presione Enter","ERROR",JOptionPane.ERROR_MESSAGE);
+       }else{
        contraseña=txtContraseña.getText();
        longitud=contraseña.length();
        pass=new Password(longitud, contraseña);
@@ -154,6 +157,7 @@ public class Principal extends javax.swing.JFrame {
         cmdCambiar.setEnabled(true);
         cmdBorrar.setEnabled(true);
         txtContraseña.setEditable(false);
+       }
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
@@ -169,6 +173,7 @@ public class Principal extends javax.swing.JFrame {
         int aux;
         aux=JOptionPane.showConfirmDialog(this,"Seguro Que Desea Cambiar Su Contraseña ? ","CAMBIAR CONTRASEÑA",JOptionPane.YES_NO_OPTION);
         if(aux==0){
+            
         JOptionPane.showMessageDialog(this,"Digite Su Nueva Contraseña Y Presione Enter");
         txtContraseña.requestFocusInWindow();
         txtContraseña.setEditable(true);
@@ -178,6 +183,8 @@ public class Principal extends javax.swing.JFrame {
         cmdMostrar.setEnabled(false);
         cmdCambiar.setEnabled(false);
         cmdBorrar.setEnabled(false);}
+            
+        
     }//GEN-LAST:event_cmdCambiarActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
