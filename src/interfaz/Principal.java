@@ -5,6 +5,9 @@
  */
 package interfaz;
 
+import clases.Password;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp 14
@@ -14,8 +17,15 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    Password pass;
+    String contraseña;
+    int longitud;
     public Principal() {
         initComponents();
+        cmdMostrar.setEnabled(false);
+        cmdCambiar.setEnabled(false);
+        cmdBorrar.setEnabled(false);
+        JOptionPane.showMessageDialog(this,"Digite Su Contraseña Y Presione Enter");
     }
 
     /**
@@ -31,15 +41,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtContraseña = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        txtSeguridad = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         cmdMostrar = new javax.swing.JButton();
         cmdCambiar = new javax.swing.JButton();
-        cmdGuardar = new javax.swing.JButton();
         cmdBorrar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtMostrar = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,11 +61,16 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTRASEÑA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtContraseña.setText("jPasswordField1");
-        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 170, 30));
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 170, 30));
 
-        jTextField1.setEditable(false);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 60, 220, 20));
+        txtSeguridad.setEditable(false);
+        txtSeguridad.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jPanel2.add(txtSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 50, 220, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 310, 90));
 
@@ -67,34 +81,43 @@ public class Principal extends javax.swing.JFrame {
         cmdMostrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdMostrar.setForeground(new java.awt.Color(255, 255, 255));
         cmdMostrar.setText("Mostrar");
-        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 100, 30));
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 100, 30));
 
         cmdCambiar.setBackground(new java.awt.Color(0, 0, 0));
         cmdCambiar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdCambiar.setForeground(new java.awt.Color(255, 255, 255));
         cmdCambiar.setText("Cambiar Contraseña");
-        jPanel3.add(cmdCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 170, 30));
-
-        cmdGuardar.setBackground(new java.awt.Color(0, 0, 0));
-        cmdGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        cmdGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        cmdGuardar.setText("Guardar");
-        jPanel3.add(cmdGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 100, 30));
+        cmdCambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCambiarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 170, 30));
 
         cmdBorrar.setBackground(new java.awt.Color(0, 0, 0));
         cmdBorrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdBorrar.setForeground(new java.awt.Color(255, 255, 255));
         cmdBorrar.setText("Borrar");
-        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 100, 30));
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 100, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 190, 210));
 
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtMostrar.setColumns(20);
+        txtMostrar.setRows(5);
+        jScrollPane1.setViewportView(txtMostrar);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 280, 70));
 
@@ -118,6 +141,56 @@ public class Principal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(579, 314));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+       String aux;
+       contraseña=txtContraseña.getText();
+       longitud=contraseña.length();
+       pass=new Password(longitud, contraseña);
+       aux=pass.Seguridad();
+       txtSeguridad.setText(aux);
+       
+        cmdMostrar.setEnabled(true);
+        cmdCambiar.setEnabled(true);
+        cmdBorrar.setEnabled(true);
+        txtContraseña.setEditable(false);
+    }//GEN-LAST:event_txtContraseñaActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+       Password aux;
+        contraseña=txtContraseña.getText();
+        pass=new Password(longitud, contraseña);
+        aux=pass.Mostrar();
+        txtMostrar.setText("Su Contraseña Es: "+aux.getContraseña());
+        
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCambiarActionPerformed
+        int aux;
+        aux=JOptionPane.showConfirmDialog(this,"Seguro Que Desea Cambiar Su Contraseña ? ","CAMBIAR CONTRASEÑA",JOptionPane.YES_NO_OPTION);
+        if(aux==0){
+        JOptionPane.showMessageDialog(this,"Digite Su Nueva Contraseña Y Presione Enter");
+        txtContraseña.requestFocusInWindow();
+        txtContraseña.setEditable(true);
+        txtContraseña.setText("");
+        txtSeguridad.setText("");
+        txtMostrar.setText("");
+        cmdMostrar.setEnabled(false);
+        cmdCambiar.setEnabled(false);
+        cmdBorrar.setEnabled(false);}
+    }//GEN-LAST:event_cmdCambiarActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtContraseña.requestFocusInWindow();
+        txtContraseña.setEditable(true);
+        txtContraseña.setText("");
+        txtSeguridad.setText("");
+        txtMostrar.setText("");
+        cmdMostrar.setEnabled(false);
+        cmdCambiar.setEnabled(false);
+        cmdBorrar.setEnabled(false);
+        JOptionPane.showMessageDialog(this,"Digite Su Contraseña Y Presione Enter");
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,7 +230,6 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdBorrar;
     private javax.swing.JButton cmdCambiar;
-    private javax.swing.JButton cmdGuardar;
     private javax.swing.JButton cmdMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -165,8 +237,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JTextArea txtMostrar;
+    private javax.swing.JTextField txtSeguridad;
     // End of variables declaration//GEN-END:variables
 }

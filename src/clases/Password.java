@@ -5,6 +5,9 @@
  */
 package clases;
 
+import java.awt.Color;
+import javax.swing.text.DefaultHighlighter;
+
 /**
  *
  * @author hp 14
@@ -53,13 +56,6 @@ public class Password {
         aux=this.getContraseña();
         Pass= new Password(this.getLongitud(),aux);
         return Pass;        
-    }
-    public Password Cambiar(){
-        Password Pass;
-        String aux;
-        aux=this.getContraseña();
-        Pass= new Password(this.getLongitud(),aux);
-        return Pass; 
     }
    
 }
